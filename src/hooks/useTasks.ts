@@ -19,5 +19,19 @@ export const useTasks = () => {
     mutate('/tasks', [...data, result.data]);
   };
 
-  return { data, error, createTask };
+  const updateTask = async (task: Task) => {
+    if (!data) {
+      return false;
+    }
+    const { data: updatedTask } = await api.patch<Task>(
+      `/tasks/${task.id}`,
+      task
+    );
+    mutate(
+      '/tasks',
+      data.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
+  return { data, error, createTask, updateTask };
 };

@@ -5,9 +5,14 @@ import { Task } from '../../types/task';
 interface IProps {
   data?: Task[];
   error?: Error;
+  handleUpdateTask: Function;
 }
 
-export const TaskList: React.FC<IProps> = ({ data, error }) => {
+export const TaskList: React.FC<IProps> = ({
+  data,
+  error,
+  handleUpdateTask,
+}) => {
   if (error) return <div className="error">{error.message}</div>;
   if (!data) return <div className="loading">Loading...</div>;
 
@@ -16,7 +21,7 @@ export const TaskList: React.FC<IProps> = ({ data, error }) => {
       <ul>
         {data?.map((task) => (
           <li key={task.id}>
-            <TaskItem task={task} />
+            <TaskItem task={task} handleUpdateTask={handleUpdateTask} />
           </li>
         ))}
       </ul>
