@@ -1,10 +1,14 @@
 import React from 'react';
 import { TaskForm } from './Form';
 
-export const TaskNew: React.FC = () => {
+interface IProps {
+  handleAction: Function;
+}
+
+export const TaskNew: React.FC<IProps> = ({ handleAction }) => {
   return (
     <div className="new">
-      <TaskForm />
+      <TaskForm handleAction={handleAction} />
     </div>
   );
 };

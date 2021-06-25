@@ -1,17 +1,13 @@
 import React from 'react';
-import axios from 'axios';
-import useSWR from 'swr';
 import { TaskItem } from './Item';
 import { Task } from '../../types/task';
 
-export const TaskList: React.FC = () => {
-  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+interface IProps {
+  data?: Task[];
+  error?: Error;
+}
 
-  const { data, error } = useSWR<Task[], Error>(
-    'http://localhost:4000/tasks',
-    fetcher
-  );
-
+export const TaskList: React.FC<IProps> = ({ data, error }) => {
   if (error) return <div className="error">{error.message}</div>;
   if (!data) return <div className="loading">Loading...</div>;
 
