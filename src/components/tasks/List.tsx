@@ -6,12 +6,14 @@ interface IProps {
   data?: Task[];
   error?: Error;
   handleUpdateTask: Function;
+  handleRemoveTask: Function;
 }
 
 export const TaskList: React.FC<IProps> = ({
   data,
   error,
   handleUpdateTask,
+  handleRemoveTask,
 }) => {
   if (error) return <div className="error">{error.message}</div>;
   if (!data) return <div className="loading">Loading...</div>;
@@ -21,7 +23,11 @@ export const TaskList: React.FC<IProps> = ({
       <ul>
         {data?.map((task) => (
           <li key={task.id}>
-            <TaskItem task={task} handleUpdateTask={handleUpdateTask} />
+            <TaskItem
+              task={task}
+              handleUpdateTask={handleUpdateTask}
+              handleRemoveTask={handleRemoveTask}
+            />
           </li>
         ))}
       </ul>

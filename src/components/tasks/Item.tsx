@@ -6,9 +6,14 @@ import { useActiveTask } from '../../contexts/ActiveTask';
 interface IProps {
   task: Task;
   handleUpdateTask: Function;
+  handleRemoveTask: Function;
 }
 
-export const TaskItem: React.FC<IProps> = ({ task, handleUpdateTask }) => {
+export const TaskItem: React.FC<IProps> = ({
+  task,
+  handleUpdateTask,
+  handleRemoveTask,
+}) => {
   const { activeTask, setActiveTask } = useActiveTask();
 
   return (
@@ -18,7 +23,9 @@ export const TaskItem: React.FC<IProps> = ({ task, handleUpdateTask }) => {
       ) : (
         <div className="item">
           <span onClick={() => setActiveTask(task)}>{task.name}</span>
-          <button className="bt-remove">X</button>
+          <button className="bt-remove" onClick={() => handleRemoveTask(task)}>
+            X
+          </button>
         </div>
       )}
     </>

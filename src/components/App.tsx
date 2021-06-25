@@ -8,7 +8,7 @@ import { Task } from '../types/task';
 
 export const App: React.FC = () => {
   const { setActiveTask } = useActiveTask();
-  const { data, error, createTask, updateTask } = useTasks();
+  const { data, error, createTask, updateTask, removeTask } = useTasks();
 
   const handleUpdateTask = (task: Task) => {
     updateTask(task);
@@ -24,6 +24,7 @@ export const App: React.FC = () => {
           data={data}
           error={error}
           handleUpdateTask={handleUpdateTask}
+          handleRemoveTask={removeTask}
         />
       </div>
     </div>

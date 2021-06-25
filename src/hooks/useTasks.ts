@@ -29,9 +29,23 @@ export const useTasks = () => {
     );
     mutate(
       '/tasks',
-      data.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+      data.map(
+        (task) => (task.id === updatedTask.id ? updatedTask : task),
+        false
+      )
     );
   };
 
-  return { data, error, createTask, updateTask };
+  const removeTask = async (task: Task) => {
+    if (!data) {
+      return false;
+    }
+    await api.delete<Task>(`/tasks/${task.id}`);
+    mutate(
+      '/tasks',
+      data.filter((item) => item.id === task.id, false)
+    );
+  };
+
+  return { data, error, createTask, updateTask, removeTask };
 };
