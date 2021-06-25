@@ -1,0 +1,8 @@
+{
+  "tasks": [
+    { "id": 1, "name": "Wake Up" },
+    { "id": 2, "name": "Work" },
+    { "id": 3, "name": "Sleep" },
+    { "id": 4, "name": "Repeat" }
+  ]
+}

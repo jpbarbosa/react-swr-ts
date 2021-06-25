@@ -56,6 +56,16 @@ header .counter {
   text-align: center;
 }
 
+.loading,
+.error {
+  padding: 16px;
+}
+
+.error {
+  color: darkred;
+  background: lightcoral;
+}
+
 .list ul {
   list-style-type: none;
   margin: 0;
