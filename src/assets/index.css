@@ -1,13 +1,128 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  color: #fff;
+  background: #000;
+  font-size: 18px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #fff;
+  background: #333;
+}
+
+header h1 {
+  width: 100%;
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  white-space: nowrap;
+}
+
+header .title,
+header .subtitle {
+  margin: 4px;
+}
+
+header .title {
+  font-size: 32px;
+}
+
+header .subtitle {
+  font-size: 18px;
+  background: #666;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px;
+  font-weight: normal;
+}
+
+header .counter {
+  float: right;
+  background: #fff;
+  color: #333;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.list ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #333;
+}
+
+.list li {
+  border-bottom: 1px solid #333;
+}
+
+.list li span {
+  width: 100%;
+  color: #ccc;
+  padding: 16px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.list li:hover {
+  background: #222;
+}
+
+.list li .item,
+form {
+  display: flex;
+}
+
+input[type='text'],
+input[type='submit'],
+button,
+a.button {
+  font-size: 18px;
+  color: #fff;
+  background: transparent;
+  border-radius: 4px;
+  border: 1px solid #666;
+  margin: 8px 16px;
+  padding: 7px;
+  -webkit-appearance: none;
+}
+
+input[type='text'] {
+  width: 100%;
+  border: 1px solid #333;
+  margin-left: 8px;
+  margin-right: -8px;
+}
+
+input[type='text']::placeholder {
+  color: #666;
+  font-style: italic;
+}
+
+button,
+a.button {
+  border-color: #999;
+}
+
+input[type='submit'],
+button.bt-new {
+  color: #0f0;
+  border-color: #0f0;
+}
+
+button.bt-remove {
+  color: #f00;
+  border-color: #f00;
+  float: right;
 }
