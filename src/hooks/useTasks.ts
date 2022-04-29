@@ -1,5 +1,5 @@
 import axios from 'axios';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import { Task } from '../types/task';
 
 export const useTasks = () => {
@@ -9,14 +9,14 @@ export const useTasks = () => {
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
-  const { data, error } = useSWR<Task[], Error>('/tasks', fetcher);
+  const { data, error, mutate } = useSWR<Task[], Error>('/tasks', fetcher);
 
   const createTask = async (task: Task) => {
     if (!data) {
       return false;
     }
     const result = await api.post<Task>('/tasks', task);
-    mutate('/tasks', [...data, result.data]);
+    mutate([...data, result.data]);
   };
 
   const updateTask = async (task: Task) => {
@@ -28,7 +28,6 @@ export const useTasks = () => {
       task
     );
     mutate(
-      '/tasks',
       data.map(
         (task) => (task.id === updatedTask.id ? updatedTask : task),
         false
@@ -41,10 +40,7 @@ export const useTasks = () => {
       return false;
     }
     await api.delete<Task>(`/tasks/${task.id}`);
-    mutate(
-      '/tasks',
-      data.filter((item) => item.id === task.id, false)
-    );
+    mutate(data.filter((item) => item.id === task.id, false));
   };
 
   return { data, error, createTask, updateTask, removeTask };
