@@ -2,14 +2,18 @@ import axios from 'axios';
 import useSWR from 'swr';
 import { Task } from '../types/task';
 
-export const useTasks = () => {
+export const useTasks = (callback?: Function) => {
   const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
   });
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
-  const { data, error, mutate } = useSWR<Task[], Error>('/tasks', fetcher);
+  const { data, error, mutate } = useSWR<Task[], Error>('/tasks', fetcher, {
+    onSuccess: (data, key) => {
+      if (callback) callback();
+    },
+  });
 
   const createTask = async (task: Task) => {
     if (!data) {
