@@ -2,6 +2,7 @@
   "name": "react-swr-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/react-swr-ts",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -11,6 +12,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "axios": "^0.21.1",
+    "gh-pages": "^3.2.3",
     "json-server": "^0.16.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -24,6 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "server": "json-server db.json --port 4000"
   },
   "eslintConfig": {
